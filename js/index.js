@@ -25,28 +25,32 @@ let fetchUrl = function(option, stock) {
     return `https://www.alphavantage.co/query?function=${option}&symbol=${stock}&apikey=${APIKey}`
 }
 
-searchBar.setAttribute("placeholder", 'Starting typing a company')
+//searchBar.setAttribute("placeholder", 'Starting typing a company')
 
 let fetchRequest = function(query, stockSymbol) {
     fetch(fetchUrl(query, stockSymbol))
     .then(Response => Response.json())
     .then(data => {
         dataLookingFor = Object.values(data)[1]
-        //dataLookingFor = dataLookingFor[1]
         console.log(dataLookingFor)
         return dataLookingFor
     })
     .then(data => {
-        let dates = Object.keys(data)
+        let dates = Object.entries(data)
         console.log(`First Date was: ${dates[dates.length-1]}`)
         return populatePage(dates)
     })
     .catch(error => {
-        //console.error(error)
+        console.error(error)
         return displayError(error)
     })}
 
 function populatePage(data) {
     console.log("Populating Page: ", data)
-    displayArea.innerHTML = JSON.stringify(data);
+    for (let item of data) {
+        let newP = document.createElement('p')
+        newP.innerText = `${item[0]} + ${item[1]['4. close']}`
+        displayArea.appendChild(newP)
+    }
+    //displayArea.innerHTML = JSON.stringify(data);
 }
