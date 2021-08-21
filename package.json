@@ -1,0 +1,22 @@
+{
+  "name": "yesterday",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ghostday/Yesterday.git"
+  },
+  "author": "Chris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ghostday/Yesterday/issues"
+  },
+  "homepage": "https://github.com/Ghostday/Yesterday#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.0"
+  }
+}
