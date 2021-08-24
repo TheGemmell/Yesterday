@@ -1,6 +1,18 @@
 
 
 .main-content {
-    padding: 40px 15px;
-    text-align: center;
+    padding: 40px 10px;
+    color: white;
+
+}
+
+#searchBar {
+    color: white;
+}
+
+
+#search-controls {
+    color: white;
+    padding-left: 18%;
+    padding-right: 18%;
 }
