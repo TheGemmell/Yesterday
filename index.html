@@ -7,23 +7,18 @@
     <title>Yesterday</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <script id="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.1.1/chartjs-plugin-zoom.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="main-content">
-            <div class="input-group mb-5" id="search-controls">
-                <input class="form-control" id="searchBar" type="text" placeholder="Begin typing a company name in">
-                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="query-dropdown" aria-expanded="false">Timeframe</button>
-                <ul id="query-options" class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Daily</a></li>
-                    <li><a class="dropdown-item" href="#">Weekly</a></li>
-                    <li><a class="dropdown-item" href="#">Monthly</a></li>
-                </ul>
-            </div>
-            <h3>Info To Be Displayed</h3>
+        <div class="input-group search-controls align-self-center">
+            <input class="form-control" id="searchBar" type="text" placeholder="Begin typing a company name in">
+        </div>
+        <div class="main-content visually-hidden" id="maincontent">
                 <div class="card text-white bg-primary">
                     <div class="card-header text-center" id="summary-content-header">Summary</div>
                     <div class="card-body" id="summaryContentBody">
@@ -36,16 +31,25 @@
                     </div>
                     <div class="col-lg-3 text-center" id="stock-logo">
                         <h1 id="rightHandName">RightHandName</h1>
-                        <h5 id="rightHandSector">Sector</h5>
-                        <h6 id="rightHandIndustry">Type</h6>
+                        <h4 id="rightHandSector">Sector</h4>
+                        <h5 id="rightHandIndustry">Type</h5>
+                        <h6 id="rightHandCurrency" class="text-success">Currency</h6>
+                        <h6 id="rightHandExchange" class="text-secondary">Exchange</h6>
                     </div>
                     </div>
                 </div>
-                <div class="card-footer text-success" id="summary-content-footer"></div>
+                <div id="summary-content-footer"></div>
             </div>
-                <div class="card text-white bg-primary">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="query-dropdown" aria-expanded="false">Timeframe</button>
+            <ul id="query-options" class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Daily</a></li>
+                <li><a class="dropdown-item" href="#">Weekly</a></li>
+                <li><a class="dropdown-item" href="#">Monthly</a></li>
+            </ul>
+                <div class="card text-white bg-primary visually-hidden" id="graphcard">
                     <div class="card-header">Content Generated</div>
                     <div class="card-body" id="mainDataBody">
+                       
                         <h4 class="card-title">IBM</h4>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <canvas id="timelineChart"></canvas>
@@ -53,6 +57,7 @@
                 </div>
         </div>
     </div>
+<script src="js/searchBar.js"></script>
 <script src="js/populate.js"></script>
 <script src="js/index.js"></script>
 </body>

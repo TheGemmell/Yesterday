@@ -1,4 +1,79 @@
+* { box-sizing: border-box; }
+body {
+  font: 1.1rem Arial;
+}
 
+p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+
+.form-control {
+  font-size: 1.5rem;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 2em;
+  }
+
+  input[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+  }
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    width: 300px;
+    position: relative;
+    display: inline-block;
+  }
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    width: 36%;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+}
+.autocomplete-items div {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #3a3f44;
+    border-bottom: 1px solid #d4d4d4;
+
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #7a8288;
+}
+
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: #7a8288 !important;
+    color: #ffffff;
+}
 
 .main-content {
     padding: 40px 10px;
@@ -6,13 +81,36 @@
 
 }
 
-#searchBar {
+
+.search-controls {
     color: white;
+    padding-inline: 32%;
+    margin-bottom: 3rem;
 }
 
-
-#search-controls {
+#searchBar {
     color: white;
-    padding-left: 18%;
-    padding-right: 18%;
+    margin-top: 3rem;
+}
+
+.card-footer {
+  padding: 0;
+  border-top: none;
+}
+
+.card {
+  border: 1.6px solid darkgreen;
+  margin-bottom: 2rem;
+}
+
+#summary-content-header {
+  font-size: 2rem;
+}
+
+#fetchedDesc {
+  line-height: 1.75rem;
+}
+
+.was-validated .form-control:valid, .form-control.is-valid {
+  background-image: none;
 }
