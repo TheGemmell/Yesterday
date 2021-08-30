@@ -52,7 +52,6 @@ let fetchFooter = function(stock) {
     .then(data => {
         data = Object.entries(data)
         console.log('Second Promise: ', data)
-
         return populateData.footer(data)
     })
     .catch(error => {
@@ -74,20 +73,11 @@ let fetchTimeInfo = function(query, stockSymbol) {
     })
     .catch(error => {
         console.error(error)
-        displayError(error)
+        populateData.displayError(error)
     })
 }
 
 
-function displayError(error) {
-    let displayedError = document.createElement('div')
-    displayedError.classList = 'alert alert-dismissible alert-danger';
-    displayedError.innerHTML = `
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  <strong>Oh snap!</strong>
-  <p>${error}`
-    document.getElementById('summary-content-header').prepend(displayedError)
-}
 
 
 
@@ -110,29 +100,29 @@ let renderChart = function(data, title, timeline) {
                 label: title,
                 backgroundColor: 'rgb(255, 99, 255)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: values 
+                data: values,
             }]
         },
         options: {
             plugins: {
                 zoom: {
                     // TODO: Fix Panning Issue
+                    limits: {
+                        x: {min: 'original', max: 'original'},
+                        y: {min: 'original', max: 'original'},
+                    },
                     pan: {
                         enabled: true,
-                        modifierKey: 'ctrl',
+                        mode: 'xy',
                     },
                     zoom: {
                         wheel: {
                             enabled: true,
                         },
                         drag: {
-                            enabled: true,
+                            enabled: false,
                         },
                         mode: 'xy',
-                    },
-                    limits: {
-                        x: {min: 'original', max: 'original'},
-                        y: {min: 'original', max: 'original'},
                     },
                 },
                 legend: {

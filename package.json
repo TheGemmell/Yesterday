@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Ghostday/Yesterday#readme",
   "dependencies": {
-    "bootstrap": "^5.1.0"
+    "bootstrap": "^5.1.0",
+    "chartjs-plugin-zoom": "^1.1.1"
   }
 }

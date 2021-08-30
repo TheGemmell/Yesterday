@@ -64,10 +64,24 @@ const populateData = (function (document, window) {
     listOfInfo.lastChild.firstChild.innerText = changePercentItem
     }
 
+    const displayError = function (error) {
+        let displayedError = document.createElement('div')
+        displayedError.classList = 'alert alert-dismissible alert-danger';
+        displayedError.innerHTML = `
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong>Oh snap!</strong>
+      <p>${error}`
+        document.getElementById('summary-content-header').prepend(displayedError)
+    }
+    
+
+
+
+
     return {
         summary: fillSummary,
-        populatePage: populatePage,
         footer: fillFooter,
+        displayError: displayError,
     }
     
 
