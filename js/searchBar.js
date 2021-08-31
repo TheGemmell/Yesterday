@@ -50,14 +50,14 @@ let searchResults = function(input) {
 
 let populateSearch = function (bestMatches, searchList, userInput) {
 	for (let bestMatch of bestMatches) {
-		if (bestMatch[''])
+		if (!bestMatch['1. symbol'].includes('.')) {
+		console.log(bestMatch)
 		console.log('populateSearch')
 		searchItem = document.createElement("DIV");
 		searchItem.setAttribute('id', bestMatch['1. symbol'])
 		searchItem.innerHTML = `<p>${bestMatch['2. name']}</p>`
 		searchItem.innerHTML += `<p style="text-align:right">${bestMatch['1. symbol']}</p><p style="text-align:right;color:#7a8288">${bestMatch['8. currency']}/${bestMatch['4. region']}</p>`
 		searchItem.setAttribute('class', 'searchresult')
-		//searchItem.innerHTML += "<input type='hidden' value='" + bestMatch['2. name'] + "'>";
 		searchItem.addEventListener("click", function (e) {
 			console.log('User Clicked: ', this.getAttribute('id'))
 			userInput.value = this.getAttribute('id');
@@ -67,6 +67,7 @@ let populateSearch = function (bestMatches, searchList, userInput) {
 			  }));
 			});
 		searchList.appendChild(searchItem);
+		}
 	}
 }
 

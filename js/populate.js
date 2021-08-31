@@ -12,8 +12,10 @@ const populateData = (function (document, window) {
     let rightHandCurrency = document.getElementById('rightHandCurrency')
     let searchBar = document.getElementById("searchBar")
     let fetchedSummary = document.getElementById("fetchedSummary")
+    let mainContent = document.getElementById('maincontent')
 
 
+    
 
     const fillSummary = function (data) {
         rightHandExchange.innerText = data.Exchange;
@@ -23,6 +25,7 @@ const populateData = (function (document, window) {
         rightHandName.innerText = data.Symbol;
         rightHandSector.innerText = data.Sector;
         rightHandIndustry.innerText = data.Industry;
+        mainContent.classList.remove("visually-hidden")
     }
 
 

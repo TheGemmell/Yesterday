@@ -3,14 +3,11 @@
     const APIKey = "K6W03DLD7N6KHG1G";
 
     let querySelector = document.getElementById("query-options")
-    let mainContent = document.getElementById('maincontent')
     // TODO: Find out why searchBar can be found.
 searchBar.addEventListener('keypress', e =>{
     if (e.code === "Enter") {
         console.log(e)
-        searchBar.classList.add('is-valid')
         fetchOverview((searchBar.value).toUpperCase())
-        mainContent.classList.remove("visually-hidden")
     }
 })
 
@@ -31,7 +28,8 @@ let fetchOverview = function(stock) {
     fetch(fetchUrl("OVERVIEW", stock))
     .then(Response => Response.json())
     .then(data => {
-        console.log(data)
+        console.log(Object.keys(data).length)
+        searchBar.classList.add('is-valid')
         populateData.summary(data)
         fetchFooter((searchBar.value).toUpperCase())
     })
