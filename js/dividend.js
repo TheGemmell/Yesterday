@@ -297,14 +297,15 @@ console.log()
 console.log(Object.keys(dividends).length)
 
 function filterDividends(callback) {
-    let dates = Object.entries(callback)
-    console.log(dates)
-    let array2 = Object.values(dates)
-    console.log(array2)
-    let newArray = dates.filter(eachObj => {
+    let data = Object.entries(callback)
+    console.log(data)
+    let listOfDates = Object.keys(callback)
+    console.log(listOfDates)
+    let newArray = data.filter(eachObj => {
         console.log(eachObj[1]['7. dividend amount'])
-        console.log(eachObj['7. dividend amount'])
-        return eachObj['7. dividend amount'] === 0
+        let array3 = eachObj[1]['7. dividend amount']
+        console.log(array3)
+        return eachObj[1]['7. dividend amount'] != '0.0000'
     })
     console.log(newArray)
     return newArray
