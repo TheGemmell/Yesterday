@@ -41,7 +41,6 @@ let searchResults = function(input) {
 			<p>${data.Information}`
 			document.getElementsByClassName('container')[0].appendChild(displayedError)
 		}
-
 	})
 	.catch(error => {
 		console.log(error)
@@ -51,8 +50,6 @@ let searchResults = function(input) {
 let populateSearch = function (bestMatches, searchList, userInput) {
 	for (let bestMatch of bestMatches) {
 		if (!bestMatch['1. symbol'].includes('.')) {
-		console.log(bestMatch)
-		console.log('populateSearch')
 		searchItem = document.createElement("DIV");
 		searchItem.setAttribute('id', bestMatch['1. symbol'])
 		searchItem.innerHTML = `<p>${bestMatch['2. name']}</p>`
@@ -61,7 +58,8 @@ let populateSearch = function (bestMatches, searchList, userInput) {
 		searchItem.addEventListener("click", function (e) {
 			console.log('User Clicked: ', this.getAttribute('id'))
 			userInput.value = this.getAttribute('id');
-			userInput.dispatchEvent(new KeyboardEvent('keypress', {
+			userInput.classList.add('is-valid')
+			userInput.dispatchEvent(new CustomEvent('startSearch', {
 				'key': 'Enter',
 				'code': 'Enter',
 			  }));
@@ -80,7 +78,7 @@ function autocomplete(input) {
 			return false
 		}
 		searchResults(input)
-	}, 470))
+	}, 450))
 
 	input.addEventListener("keydown", function (e) {
 		//console.log('keydown: ', e)

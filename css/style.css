@@ -120,3 +120,7 @@ input {
 .was-validated .form-control:valid, .form-control.is-valid {
   background-image: none;
 }
+
+#invest-date {
+  font-size: 1.2rem;
+}

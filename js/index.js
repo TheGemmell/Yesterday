@@ -4,20 +4,17 @@
 
     let querySelector = document.getElementById("query-options")
     // TODO: Find out why searchBar can be found.
-searchBar.addEventListener('keypress', e =>{
-    if (e.code === "Enter") {
+    searchBar.addEventListener('startSearch', e =>{
         console.log(e)
         fetchOverview((searchBar.value).toUpperCase())
-    }
 })
 
 
 querySelector.addEventListener('click', e => {
     let querySelected = e.target.innerHTML
-    let option = "TIME_SERIES_" + querySelected.toUpperCase()
+    let option = "TIME_SERIES_" + querySelected.toUpperCase() + "_ADJUSTED"
     document.getElementById('query-dropdown').innerText = querySelected
     fetchTimeInfo(option, searchBar.value)
-    document.getElementById('graphcard').classList.remove('visually-hidden')
 })
 
 let fetchUrl = function(option, stock) {
@@ -28,8 +25,8 @@ let fetchOverview = function(stock) {
     fetch(fetchUrl("OVERVIEW", stock))
     .then(Response => Response.json())
     .then(data => {
-        console.log(Object.keys(data).length)
-        searchBar.classList.add('is-valid')
+        // Obsolete code to get rid of it fetching Shell companies
+        //console.log(Object.keys(data).length)
         populateData.summary(data)
         fetchFooter((searchBar.value).toUpperCase())
     })
@@ -50,7 +47,7 @@ let fetchFooter = function(stock) {
     .then(data => {
         data = Object.entries(data)
         console.log('Second Promise: ', data)
-        return populateData.footer(data)
+        populateData.footer(data)
     })
     .catch(error => {
         console.log(error)
@@ -67,6 +64,7 @@ let fetchTimeInfo = function(query, stockSymbol) {
     })
     .then(data => {
         let dates = Object.entries(data)
+        document.getElementById('graphcard').classList.remove('visually-hidden')
         renderChart(dates, stockSymbol, document.getElementById('query-dropdown').innerText)
     })
     .catch(error => {
@@ -87,8 +85,8 @@ let renderChart = function(data, title, timeline) {
     let dates = []
     let values = []
     for (let date of data) {
-        dates.push(date[0])
-        values.push(date[1]['4. close'])
+        dates.unshift(date[0])
+        values.unshift(date[1]['5. adjusted close'])
     }
     new Chart(ctx, {
         type: 'line',
@@ -111,6 +109,7 @@ let renderChart = function(data, title, timeline) {
                     },
                     pan: {
                         enabled: true,
+                        modifierKey: 'ctrl',
                         mode: 'xy',
                     },
                     zoom: {
@@ -118,7 +117,7 @@ let renderChart = function(data, title, timeline) {
                             enabled: true,
                         },
                         drag: {
-                            enabled: false,
+                            enabled: true,
                         },
                         mode: 'xy',
                     },
