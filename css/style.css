@@ -104,6 +104,10 @@ input {
   border-top: none;
 }
 
+.row {
+  justify-content: center;
+}
+
 .card {
   border: 1.6px solid darkgreen;
   margin-bottom: 2rem;
@@ -121,6 +125,30 @@ input {
   background-image: none;
 }
 
+.investment-spans {
+  background-color: #3a3f44;
+  color: white;
+}
+
 #invest-date {
   font-size: 1.2rem;
+  margin-left: 4rem;
+  color: white;
+  background-color: #272b30;
+}
+
+#investment-options {
+  width: 85%;
+  margin: auto;
+}
+
+
+#investment-options button {
+  margin: 20px;
+  width: 20%;
+}
+
+
+#valueToInvest {
+  color: white;
 }

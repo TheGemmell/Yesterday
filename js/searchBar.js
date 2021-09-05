@@ -38,7 +38,7 @@ let searchResults = function(input) {
 			displayedError.innerHTML = `
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 			<strong>Oh snap!</strong>
-			<p>${data.Information}`
+			<p>${data.Information}</p>`
 			document.getElementsByClassName('container')[0].appendChild(displayedError)
 		}
 	})

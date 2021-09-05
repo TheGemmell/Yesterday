@@ -26,35 +26,116 @@
                         <div class="col-lg-9">
                         <h4 class="card-title">Overview</h4>
                         <div id="fetchedSummary">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">It appears that stock or equity has very little information or has been delisted. :(</p>
                         </div>
                     </div>
                     <div class="col-lg-3 text-center" id="stock-logo">
-                        <h1 id="rightHandName">RightHandName</h1>
-                        <h4 id="rightHandSector">Sector</h4>
-                        <h5 id="rightHandIndustry">Type</h5>
-                        <h6 id="rightHandCurrency" class="text-success">Currency</h6>
-                        <h6 id="rightHandExchange" class="text-secondary">Exchange</h6>
+                        <h1 id="rightHandName"></h1>
+                        <h4 id="rightHandSector"></h4>
+                        <h5 id="rightHandIndustry"></h5>
+                        <h6 id="rightHandCurrency" class="text-success"></h6>
+                        <h6 id="rightHandExchange" class="text-secondary"></h6>
                     </div>
                     </div>
                 </div>
                 <div id="summary-content-footer"></div>
             </div>
-            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="query-dropdown" aria-expanded="false">Timeframe</button>
-            <ul id="query-options" class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Daily</a></li>
-                <li><a class="dropdown-item" href="#">Weekly</a></li>
-                <li><a class="dropdown-item" href="#">Monthly</a></li>
-            </ul>
                 <div class="card text-white bg-primary visually-hidden" id="graphcard">
-                    <div class="card-header">Content Generated</div>
+                    <div class="card-header">Information</div>
                     <div class="card-body" id="mainDataBody">
-                        <label for="start">Date to start investing: </label>
-                        <input type="date" id="invest-date" name="trip-start" value="2018-07-22">
-                        <h4 class="card-title">IBM</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <canvas id="timelineChart"></canvas>
+                        <div class="form-group row" id="investment-options">
+                            <label for="start" class="col-form-label">Please enter the amount of money you would have invested below, followed by a date you were looking at investing on.<p class="text-danger text-center">Please Note: The Date Selected Must Be A Valid Trading Day</p></label>
+                            <div class="input-group mb-6">
+                                <span class="input-group-text investment-spans">$</span>
+                                <input type="text" id="valueToInvest" class="form-control" placeholder="Dollar Amount" aria-label="Amount (to the nearest dollar)">
+                                <span class="input-group-text investment-spans">.00</span>
+                                <input class="col-sm-5" type="date" id="invest-date" name="trip-start" value="">
+                        </div>
+                        <button id="startCalcs" type="button" class="btn btn-primary disabled">Go!</button>
                     </div>
+                    <img src="images/loading-buffering.gif" id="tableLoading" class="visually-hidden" style="width: 14%;height: 14%;">
+                    <table class="table table-hover visually-hidden" id="dividendTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Date Entered</th>
+                            <th scope="col">Now</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="table-active">
+                            <th scope="row">Price of Stock</th>
+                            <td id="tbc1">Date Entered</td>
+                            <td id="tbc1b">Column Content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tbhd2">Price of Stock (Adjusted)</th>
+                            <td id="tbc2">Column content</td>
+                            <td id="tbc2b">Column content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tbhd3">Volume Traded</th>
+                            <td id="tbc3">Column content</td>
+                            <td id="tbc3b">Column content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tbhd4">Times Split</th>
+                            <td id="tbc4b" class="text-muted">This can affect the Stock Received</td>
+                            <td id="tbc4">Column content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tbhd5">Stock Recieved</th>
+                            <td id="tbc5">Stock Received Old</td>
+                            <td id="tbc5b">Stock Received Now</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tbhd7">Remainder</th>
+                            <td id="tbc7"></td>
+                            <td id="tbc7b">Value</td>
+                          </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                              <th scope="col">Type</th>
+                              <th scope="col">Number</th>
+                              <th scope="col">Value</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <tr class="table-active">
+                            <th scope="row" id="tb2hd1">Stocks</th>
+                            <td id="tb2c1">Column content</td>
+                            <td id="tb2c1b">Column content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tb2hd2">Dividends</th>
+                            <td id="tb2c2">Column content</td>
+                            <td id="tb2c2b">Column content</td>
+                          </tr>
+                          <tr class="table-active">
+                            <th scope="row" id="tb2hd3">Remainder</th>
+                            <td id=""></td>
+                            <td id="tb2c3">Column content</td>
+                          </tr>
+                          </tbody>
+                          <tr class="table-active">
+                            <th scope="row" class="text-muted" id="tb2hd3">Profit/Loss</th>
+                            <td></td>
+                            <td id="profitMade" class="text-success">Column content</td>
+                          </tr>
+                          <tr>
+                            <th scope="col">Total Value</th>
+                            <th scope="col"></th>
+                            <th scope="col" id="totalValue">Value</th>
+                          </tr>
+                    </table>
+                    <div class="alert alert-dismissible alert-warning text-center visually-hidden" id="splitError">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <h3 class="text-primary">Please Note</h3><p>This stock appears of been split inbetween the selected date and today. These numbers won't be accurate</p>
+                    </div>
+
+
+                    <canvas id="timelineChart"></canvas>
                 </div>
         </div>
     </div>
