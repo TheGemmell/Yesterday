@@ -11,7 +11,7 @@ const populateData = (function (document, window) {
     const rightHandCurrency = document.getElementById('rightHandCurrency')
     const fetchedSummary = document.getElementById("fetchedSummary")
     const mainContent = document.getElementById('maincontent')
-    const chartToRender = document.getElementById('timelineChart').getContext('2d');
+    const chartArea = document.getElementById('timelineChart')
 
     const tblPos = document.getElementById('tbc1')    
     const tblPos2 = document.getElementById('tbc1b')    
@@ -223,24 +223,29 @@ const populateData = (function (document, window) {
 
         }
         populateTable()
-
     }
 
     //  TODO: Fix it not making a second chart if one already rendered.
     //let newCtx = document.createElement('canvas').getContext('2d')
-    let renderChart = function (data, title, timeline) {
+    let renderChart = function (data) {
+        let chartToUse = document.createElement('canvas')
+        if (document.getElementById('timelineChart').hasChildNodes) {
+            document.getElementById('timelineChart').replaceChildren(chartToUse)
+        } else {
+            chartArea.appendChild(chartToUse)
+        }
         let dates = []
         let values = []
         for (let date of data) {
             dates.unshift(date[0])
             values.unshift(date[1]['5. adjusted close'])
         }
-        new Chart(chartToRender, {
+        new Chart(chartToUse, {
             type: 'line',
             data: {
                 labels: dates,
                 datasets: [{
-                    label: title,
+                    label: 'label',
                     backgroundColor: 'rgb(255, 99, 255)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: values,
@@ -277,9 +282,6 @@ const populateData = (function (document, window) {
             }
         });
     }
-
-
-
     return {
         renderChart: renderChart,
         summary: fillSummary,

@@ -53,7 +53,7 @@
                         </div>
                         <button id="startCalcs" type="button" class="btn btn-primary disabled">Go!</button>
                     </div>
-                    <img src="images/loading-buffering.gif" id="tableLoading" class="visually-hidden" style="width: 14%;height: 14%;">
+                    <img src="images/loading-buffering.gif" id="tableLoading" class="visually-hidden" style="width: 14%;height: 14%; display: block; margin-left: auto; margin-right: auto;">
                     <table class="table table-hover visually-hidden" id="dividendTable">
                         <thead>
                           <tr>
@@ -133,9 +133,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <h3 class="text-primary">Please Note</h3><p>This stock appears of been split inbetween the selected date and today. These numbers won't be accurate</p>
                     </div>
-
-
-                    <canvas id="timelineChart"></canvas>
+                    <div id="timelineChart">
+                      
+                    </div>
                 </div>
         </div>
     </div>
