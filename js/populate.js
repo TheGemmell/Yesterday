@@ -165,7 +165,7 @@ const populateData = (function (document, window) {
     
         console.log(`todaysDate is ${todaysDate}`)
 
-        let splits = data.filter(eachObj =>{
+        let splits = data.filter(eachObj => {
             return eachObj[1]['8. split coefficient'] != '1.0'
         })
 
@@ -181,11 +181,17 @@ const populateData = (function (document, window) {
             console.log(divArray)
             return divArray
         }
-        
-        let totalDivsPaid = divPayments(datesDivsPaid()).reduce((total, num) => {
-            return total + num
-        })
-        
+
+        let totalDivsPaid = () => {
+            let amount = 0
+            if (datesDivsPaid().length > 0) {
+                amount = divPayments(datesDivsPaid()).reduce((total, num) => {
+                    return total + num
+                })
+            }
+            return amount
+        }
+
         if (splits.length > 0) {
             showSplitWarning()
             let splitIndexArray = []
@@ -203,16 +209,16 @@ const populateData = (function (document, window) {
         }
 
         let currentStockWorth = stockReceived * currentPrice
-        let totalValueAll = totalDivsPaid + currentStockWorth
+        let totalValueAll = totalDivsPaid() + currentStockWorth
         let profitMargin = totalValueAll - amount
-        console.log(`totalDivsPaid is ${totalDivsPaid}`)
+        console.log(`totalDivsPaid() is ${totalDivsPaid()}`)
 
         function numberWithCommas(input) {
             return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
 
-        populateTable = function() {
+        const populateTable = function() {
             tblPos.innerText = parseFloat(purchasePrice).toFixed(2)
             tblPos2.innerText = parseFloat(currentPrice).toFixed(2)
             tblPosA.innerText = parseFloat(purchasePriceA).toFixed(2)
@@ -228,7 +234,7 @@ const populateData = (function (document, window) {
             tbl2Stocks.innerText = stockReceived
             tbl2StockValue.innerText = numberWithCommas(parseFloat(currentStockWorth).toFixed(2))
             tbl2Dividends.innerText = datesDivsPaid().length
-            tbl2DividendsValue.innerText = numberWithCommas(parseFloat(totalDivsPaid).toFixed(2))
+            tbl2DividendsValue.innerText = numberWithCommas(parseFloat(totalDivsPaid()).toFixed(2))
             tbl2Remainder.innerText = remainderReceivedThen
             tblTotalValue.innerText = numberWithCommas(parseFloat(totalValueAll).toFixed(2))
             tbl2Profit.innerText = numberWithCommas(parseFloat(profitMargin).toFixed(2))
