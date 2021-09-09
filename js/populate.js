@@ -101,6 +101,18 @@ const populateData = (function (document, window) {
         document.getElementById('mainDataBody').prepend(splitErrMsg)
     }
 
+
+    const displayApiExceed = function() {
+        console.log('Api Exceeded')
+        let displayedError = document.createElement('div')
+        displayedError.classList = 'alert alert-dismissible alert-danger';
+        displayedError.innerHTML = `
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Oh snap!</strong>
+        <p>There seems to be an internal error. Please try again in a minute!</p>`
+        mainContent.prepend(displayedError)
+    }
+
     const displayError = function (error) {
         let displayedError = document.createElement('div')
         displayedError.classList = 'alert alert-dismissible alert-danger';
@@ -229,8 +241,8 @@ const populateData = (function (document, window) {
     //let newCtx = document.createElement('canvas').getContext('2d')
     let renderChart = function (data) {
         let chartToUse = document.createElement('canvas')
-        if (document.getElementById('timelineChart').hasChildNodes) {
-            document.getElementById('timelineChart').replaceChildren(chartToUse)
+        if (chartArea.hasChildNodes) {
+            chartArea.replaceChildren(chartToUse)
         } else {
             chartArea.appendChild(chartToUse)
         }
@@ -288,6 +300,7 @@ const populateData = (function (document, window) {
         footer: fillFooter,
         displayError: displayError,
         dividendCalculation: dividend,
+        apiError: displayApiExceed,
     }
     
 

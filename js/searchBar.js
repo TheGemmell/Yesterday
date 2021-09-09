@@ -22,7 +22,7 @@ let searchResults = function(input) {
 	.then(Response => Response.json())
 	.then(data => {
 		console.log(data)
-		if (!("Information" in data)) {
+		if (!("Note" in data)) {
 			let results = data.bestMatches
 			console.log(results)
 			let searchList = document.createElement("div");
@@ -50,7 +50,7 @@ let searchResults = function(input) {
 let populateSearch = function (bestMatches, searchList, userInput) {
 	for (let bestMatch of bestMatches) {
 		if (!bestMatch['1. symbol'].includes('.')) {
-		searchItem = document.createElement("DIV");
+		let searchItem = document.createElement("DIV");
 		searchItem.setAttribute('id', bestMatch['1. symbol'])
 		searchItem.innerHTML = `<p>${bestMatch['2. name']}</p>`
 		searchItem.innerHTML += `<p style="text-align:right">${bestMatch['1. symbol']}</p><p style="text-align:right;color:#7a8288">${bestMatch['8. currency']}/${bestMatch['4. region']}</p>`
@@ -59,6 +59,7 @@ let populateSearch = function (bestMatches, searchList, userInput) {
 			console.log('User Clicked: ', this.getAttribute('id'))
 			userInput.value = this.getAttribute('id');
 			userInput.classList.add('is-valid')
+			userInput.classList.add('text-center')
 			userInput.dispatchEvent(new CustomEvent('startSearch', {
 				'key': 'Enter',
 				'code': 'Enter',
@@ -78,7 +79,7 @@ function autocomplete(input) {
 			return false
 		}
 		searchResults(input)
-	}, 450))
+	}, 600))
 
 	input.addEventListener("keydown", function (e) {
 		//console.log('keydown: ', e)
