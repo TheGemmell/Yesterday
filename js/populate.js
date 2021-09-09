@@ -109,7 +109,8 @@ const populateData = (function (document, window) {
         displayedError.innerHTML = `
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong>Oh snap!</strong>
-        <p>There seems to be an internal error. Please try again in a minute!</p>`
+        <p>There seems to be an internal error. Please try again in a minute!</p>
+        <p class="text-muted">The API Key has had it's limit exceeded</p>`
         mainContent.prepend(displayedError)
     }
 
