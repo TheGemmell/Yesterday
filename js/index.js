@@ -13,15 +13,24 @@
         fetchOverview((searchBar.value).toUpperCase())
 })
 
-const notWeekend = function(date){
-    let dayNum = new Date(date).getDay()
+const validDay = function(date){
+    let day = new Date(date)
+    let dayNum = day.getDay()
+    let todayDate = Date.now()
+    day.setDate(day.getDate()+3)
     console.log(dayNum)
-    if (dayNum === 0 || dayNum === 6) {
-        return false
+    if (day < todayDate) {
+        if (dayNum === 0 || dayNum === 6) {
+            return false
+        }
+        else {
+            return true
+        }
     }
     else {
-        return true
+        return false
     }
+
 }
 
 let isApiNotExceeded = function(data) {
@@ -54,7 +63,7 @@ let isApiNotExceeded = function(data) {
 
     investDate.addEventListener('change', e => {
         console.log(e)
-        if (notWeekend(e.target.value)) {
+        if (validDay(e.target.value)) {
             if (valueInvested.value > 0) {
                 goButton.classList.remove('disabled')
             }
