@@ -203,7 +203,6 @@ const populateData = (function (document, window) {
             }
             console.log(splitAmounts)
             for (let i = 0; i < splitAmounts.length; i++) {
-                // data.indexOf(splits[i])
                 stockReceived = (stockReceived * parseInt(splitAmounts[i]))
                 console.log(stockReceived)
             }
@@ -213,6 +212,13 @@ const populateData = (function (document, window) {
         let totalValueAll = totalDivsPaid() + currentStockWorth
         let profitMargin = totalValueAll - amount
         console.log(`totalDivsPaid() is ${totalDivsPaid()}`)
+
+        if (profitMargin < 0) {
+            tbl2Profit.className = 'text-danger'
+        }
+        else if (profitMargin > 0) {
+            tbl2Profit.className = 'text-success'
+        }
 
         function numberWithCommas(input) {
             return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

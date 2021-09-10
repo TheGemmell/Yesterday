@@ -48,7 +48,6 @@
                             <div class="input-group mb-6">
                                 <span class="input-group-text investment-spans">$</span>
                                 <input type="text" id="valueToInvest" class="form-control" placeholder="Dollar Amount" aria-label="Amount (to the nearest dollar)">
-                                <span class="input-group-text investment-spans">.00</span>
                                 <input class="col-sm-5" type="date" id="invest-date" name="trip-start" value="">
                         </div>
                         <button id="startCalcs" type="button" class="btn btn-primary disabled">Go!</button>
@@ -121,7 +120,7 @@
                           <tr class="table-active">
                             <th scope="row" class="text-muted" id="tb2hd3">Profit/Loss</th>
                             <td></td>
-                            <td id="profitMade" class="text-success">Column content</td>
+                            <td id="profitMade">Profit or Loss Here</td>
                           </tr>
                           <tr>
                             <th scope="col">Total Value</th>
@@ -129,10 +128,6 @@
                             <th scope="col" id="totalValue">Value</th>
                           </tr>
                     </table>
-                    <div class="alert alert-dismissible alert-warning text-center visually-hidden" id="splitError">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        <h3 class="text-primary">Please Note</h3><p>This stock appears of been split inbetween the selected date and today. These numbers won't be accurate</p>
-                    </div>
                     <div id="timelineChart">
                     </div>
                 </div>
