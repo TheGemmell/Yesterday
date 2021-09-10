@@ -7,7 +7,6 @@
     const goButton = document.getElementById('startCalcs')
     const searchBar = document.getElementById("searchBar")
 
-    // TODO: Find out why searchBar can be found.
     searchBar.addEventListener('startSearch', e =>{
         console.log(e)
         fetchOverview((searchBar.value).toUpperCase())
@@ -57,6 +56,7 @@ let isApiNotExceeded = function(data) {
 
     goButton.addEventListener('click', e => {
         console.log('Go! Button Clicked: ', e)
+        goButton.classList.add('disabled')
         document.getElementById('tableLoading').classList.remove('visually-hidden')
         fetchTimeInfo(document.getElementById('rightHandName').innerText, investDate.value, valueInvested.value)
     })
@@ -103,7 +103,7 @@ const fetchFooter = function(stock) {
         data = Object.values(data)[0]
         data = Object.entries(data)
         document.getElementById('graphcard').classList.remove('visually-hidden')
-        populateData.footer(data)
+        populateData.footer(data)   
         }
     })
     .catch(error => {
