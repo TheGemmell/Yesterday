@@ -129,29 +129,38 @@ const populateData = (function (document, window) {
         console.log(`indexOfDate: ${indexOfDate}`)
         
         let entireData = Object.entries(response)
-        let data = entireData.filter(eachObj => {
-            return entireData.indexOf(eachObj) <= indexOfDate
-        })
+
+        let data = entireData.slice(0, indexOfDate)
+
+        // TODO: Throw Exception
         console.log(`Length of data is: ${data.length}`)
         console.log('Current Price is: ', data[0][1]['4. close'])
+        
+        //throw new Error('Cant find date')
+
+        // TODO: Catch Block
+        
         const currentPrice = data[0][1]['4. close']
         const currentPriceA = data[0][1]['5. adjusted close']
         const volumeTradeNow = data[0][1]['6. volume']
+        
         renderChart(data)
         
-        const purchasePrice = Object.values(data[indexOfDate][1])[3]
-        const purchasePriceA = Object.values(data[indexOfDate][1])[4]
-        const volumeTradeThen = Object.values(data[indexOfDate][1])[5]
+        const purchasePrice = Object.values(data[indexOfDate - 1][1])[3]
+        const purchasePriceA = Object.values(data[indexOfDate - 1][1])[4]
+       
+        const volumeTradeThen = Object.values(data[indexOfDate - 1][1])[5]
 
         console.log(`purchasePrice is ${purchasePrice}`)
         console.log(`purchasePriceA is ${purchasePriceA}`)
         
         let stockReceived = parseInt(amount / purchasePrice)
         let stockReceivedNow = parseInt(amount / currentPrice)
+
         let remainderReceivedThen = parseFloat(amount % purchasePrice).toFixed(2)
         let remainderReceivedNow = parseFloat(amount % currentPrice).toFixed(2)
 
-        console.log(`stockReceived is ${stockReceived}`) 
+        console.log(`stockReceived is ${stockReceived}`)
         console.log(`remainderReceivedThen is ${remainderReceivedThen}`)
     
         let listOfDates = () => {
@@ -165,13 +174,15 @@ const populateData = (function (document, window) {
         let todaysDate = listOfDates()[0]
     
         console.log(`todaysDate is ${todaysDate}`)
-
+        
+        const divid = '7. dividend amount'
+        
         let splits = data.filter(eachObj => {
             return eachObj[1]['8. split coefficient'] != '1.0'
         })
 
         let datesDivsPaid = (array=data) => array.filter(eachObj => {
-            return eachObj[1]['7. dividend amount'] != '0.0000'
+            return eachObj[1][divid] != '0.0000'
         })
 
         let divPayments = (array, stockNum=stockReceived) => {
